@@ -1,7 +1,10 @@
-import React from 'react';
+import React from 'react'
+import axios from 'axios'
+import config from '../config.js'
 
 // currently an uncontrolled form.
 // would need to make this a stateful component to control inputs.
+
 const SignUpForm = (props) => {
 
     const signUpSubmit = e => {
@@ -12,9 +15,26 @@ const SignUpForm = (props) => {
             if (field.name === '') {
                 continue
             }
-            formData[field.name] = field.value
+            formData[field.name] = field.value;
         }
+
         console.log(formData)
+        if (formData["password"] !== formData["confirm-password"]) {
+            console.error('passwords do not match')
+            // TODO proper error message
+            return false
+        } 
+        delete formData['confirm-password']
+        const requestData = {
+            credentials: formData
+        }
+        console.log('request data is ', requestData)
+        // will axios request freak out due to extra property?
+        // umm... Terry... sign-up is a post request.
+        axios.post(`${config.apiUrl}/sign-up`, requestData)
+            .then(response => console.log(response))
+            // TODO setter send data to App.js
+            .catch(err => console.error(err))
     }
 
 
@@ -31,4 +51,4 @@ const SignUpForm = (props) => {
     )
 }
 
-export default SignUpForm;
+export default SignUpForm
