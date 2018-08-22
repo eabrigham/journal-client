@@ -29,7 +29,7 @@ class App extends Component {
         </header>
         <SignUpForm />
         <SignInForm setToken={this.setToken} />
-        <PostForm token={this.token}/>
+        <PostForm token={this.state.token}/>
       </div>
     )
   }

@@ -22,12 +22,36 @@ const PostForm = (props) => {
 
         const authHeader = {headers: {Authorization: `Token token=${props.token}`} }
         console.log('In PostForm and the auth header is ', authHeader)
- 
-        axios.post(`${config.apiUrl}/posts`, authHeader, formData)
-            .then(data => console.log(data))
-            // TODO setter method get data to App.js
-            .catch(err => console.error(err))
-    }
+
+        axios({
+            method: "post",
+            url: `${config.apiUrl}/posts`,
+            headers: {
+              Authorization: `Token token=${props.token}`
+            },
+            data: {post: formData}
+          })
+          .then(res => console.log(res))
+          .catch(err => console.log(err))
+        };
+
+        // axios.post(`${config.apiUrl}/posts`, {Authorization: `Token token=${props.token}`}, formData)
+        //     .then(res => console.log(res))
+        //     // TODO setter method get data to App.js
+        //     .catch(err => console.error(err))
+
+        // const requestData = {
+        //     method: 'POST',
+        //     headers: {'':'application/json'},
+        //     data: JSON.stringify({credentials: formData}),
+        //     url: `${config.apiUrl}/sign-up`
+        // }
+        // console.log('request data is ', requestData)
+        // axios(requestData)
+        //     .then(response => console.log(response))
+        //     // TODO setter send data to App.js
+        //     .catch(err => console.error(err))
+    
 
 
     return (
@@ -36,7 +60,7 @@ const PostForm = (props) => {
             <input type="text" name="title" />
             <label>Write Post:</label>
             <input type="text" name="content" />
-            <button type="submit">Sign Up</button>
+            <button type="submit">Create Post</button>
         </form>
     )
 }

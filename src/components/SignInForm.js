@@ -21,9 +21,9 @@ const SignInForm = (props) => {
         console.log(formData)
 
         axios.post(`${config.apiUrl}/sign-in`, {credentials: formData})
-            .then(data => { 
-                console.log(data)
-                props.setToken(data.data.user.token)
+            .then(res => { 
+                console.log(res)
+                props.setToken(res.data.user.token)
             })
             // .then(data => console.log('data.data.user.token is ', data.data.user.token))
             // TODO setter method get data to App.js
