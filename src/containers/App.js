@@ -3,6 +3,8 @@ import '../styles/App.css';
 import SignUpForm from '../components/SignUpForm.js'
 import SignInForm from '../components/SignInForm.js'
 import PostForm from '../components/PostForm.js'
+import Post from '../components/Post.js'
+import PostList from '../components/PostList';
 
 class App extends Component {
   constructor (props) {
@@ -45,6 +47,8 @@ class App extends Component {
         <SignUpForm />
         <SignInForm setToken={this.setToken} />
         <PostForm token={this.state.token} addPost={this.addPost}/>
+        {/* <Post post={this.state.posts[0]} /> */}
+        <PostList postList={this.state.posts} />
       </div>
     )
   }
