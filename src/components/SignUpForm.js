@@ -19,22 +19,26 @@ const SignUpForm = (props) => {
         }
 
         console.log(formData)
-        if (formData["password"] !== formData["confirm-password"]) {
+        if (formData["password"] !== formData["password_confirmation"]) {
             console.error('passwords do not match')
             // TODO proper error message
             return false
         } 
-        delete formData['confirm-password']
-        const requestData = {
-            credentials: formData
-        }
-        console.log('request data is ', requestData)
-        // will axios request freak out due to extra property?
-        // umm... Terry... sign-up is a post request.
-        axios.post(`${config.apiUrl}/sign-up`, requestData)
-            .then(response => console.log(response))
-            // TODO setter send data to App.js
-            .catch(err => console.error(err))
+
+        // previously used this but it didn't work:
+        axios.post(`${config.apiUrl}/sign-up`, {credentials: formData})
+
+        // const requestData = {
+        //     method: 'POST',
+        //     headers: {'content-type':'application/json'},
+        //     data: JSON.stringify({credentials: formData}),
+        //     url: `${config.apiUrl}/sign-up`
+        // }
+        // console.log('request data is ', requestData)
+        // axios(requestData)
+        //     .then(response => console.log(response))
+        //     // TODO setter send data to App.js
+        //     .catch(err => console.error(err))
     }
 
 
@@ -45,7 +49,7 @@ const SignUpForm = (props) => {
             <label>Password:</label>
             <input type="password" name="password" />
             <label>Confirm Password:</label>
-            <input type="password" name="confirm-password" />
+            <input type="password" name="password_confirmation" />
             <button type="submit">Sign Up</button>
         </form>
     )
