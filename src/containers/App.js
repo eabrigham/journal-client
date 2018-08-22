@@ -8,9 +8,11 @@ class App extends Component {
   constructor (props) {
     super (props) 
     this.state = {
-      token: null
+      token: null,
+      posts: []
     }
     this.setToken = this.setToken.bind(this)
+    this.addPost = this.addPost.bind(this)
   }
 
   setToken (token) {
@@ -19,6 +21,19 @@ class App extends Component {
     })
     console.log('In App.js and the state token is ', this.state.token)
   } 
+
+  addPost (postObj) {
+    this.setState(prevState => {
+      let nextState = prevState
+      nextState.posts.push(postObj)
+      return nextState
+    })
+    
+  }
+
+  // to show just sign out/cp when signed in:
+  // use a ternary operator
+  // have an array of the components that should be listed
 
   render() {
     return (
@@ -29,7 +44,7 @@ class App extends Component {
         </header>
         <SignUpForm />
         <SignInForm setToken={this.setToken} />
-        <PostForm token={this.state.token}/>
+        <PostForm token={this.state.token} addPost={this.addPost}/>
       </div>
     )
   }

@@ -31,28 +31,13 @@ const PostForm = (props) => {
             },
             data: {post: formData}
           })
-          .then(res => console.log(res))
+          .then(res => { 
+              console.log(res.data.post)
+              props.addPost(res.data.post)
+
+            })
           .catch(err => console.log(err))
         };
-
-        // axios.post(`${config.apiUrl}/posts`, {Authorization: `Token token=${props.token}`}, formData)
-        //     .then(res => console.log(res))
-        //     // TODO setter method get data to App.js
-        //     .catch(err => console.error(err))
-
-        // const requestData = {
-        //     method: 'POST',
-        //     headers: {'':'application/json'},
-        //     data: JSON.stringify({credentials: formData}),
-        //     url: `${config.apiUrl}/sign-up`
-        // }
-        // console.log('request data is ', requestData)
-        // axios(requestData)
-        //     .then(response => console.log(response))
-        //     // TODO setter send data to App.js
-        //     .catch(err => console.error(err))
-    
-
 
     return (
         <form className = "postForm-form" onSubmit = {postSubmit}>
