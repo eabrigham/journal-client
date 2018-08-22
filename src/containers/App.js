@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import '../styles/App.css';
 import SignUpForm from '../components/SignUpForm.js'
-import SignInForm from '../components/SignInForm.js';
+import SignInForm from '../components/SignInForm.js'
+import PostForm from '../components/PostForm.js'
 
 class App extends Component {
   constructor (props) {
     super (props) 
     this.state = {
-      token: ''
+      token: null
     }
-    this.storeToken = this.storeToken.bind(this)
+    this.setToken = this.setToken.bind(this)
   }
 
-  storeToken (token) {
+  setToken (token) {
     this.setState(prevState => {
       return {token: token}
     })
@@ -27,9 +28,10 @@ class App extends Component {
           <h1 className="App-title">Journal App</h1>
         </header>
         <SignUpForm />
-        <SignInForm storeToken={this.storeToken} />
+        <SignInForm setToken={this.setToken} />
+        <PostForm token={this.token}/>
       </div>
-    );
+    )
   }
 }
 
