@@ -15,6 +15,7 @@ class App extends Component {
     }
     this.setToken = this.setToken.bind(this)
     this.addPost = this.addPost.bind(this)
+    this.setPosts = this.setPosts.bind(this)
   }
 
   setToken (token) {
@@ -24,13 +25,19 @@ class App extends Component {
     console.log('In App.js and the state token is ', this.state.token)
   } 
 
+  setPosts (postsArray) {
+    console.log(postsArray)
+    this.setState(() => {
+      return { posts: postsArray }
+    })
+  }
+
   addPost (postObj) {
     this.setState(prevState => {
       let nextState = prevState
       nextState.posts.push(postObj)
       return nextState
     })
-    
   }
 
   // to show just sign out/cp when signed in:
@@ -45,7 +52,7 @@ class App extends Component {
           <h1 className="App-title">Journal App</h1>
         </header>
         <SignUpForm />
-        <SignInForm setToken={this.setToken} />
+        <SignInForm setToken={this.setToken} setPosts={this.setPosts} />
         <PostForm token={this.state.token} addPost={this.addPost}/>
         {/* <Post post={this.state.posts[0]} /> */}
         <PostList postList={this.state.posts} />

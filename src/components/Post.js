@@ -8,7 +8,7 @@ const Post = props => {
         <div>
             <h3>{props.post ? props.post.title : null}</h3>
             {/* want to have post title and content, eventually date */}
-            {/* <p>{props.post.content}</p> */}
+            <p>{props.post.content}</p>
         </div>
     )
 }
