@@ -5,9 +5,9 @@ import config from '../config.js'
 // currently an uncontrolled form.
 // would need to make this a stateful component to control inputs.
 
-const SignUpForm = (props) => {
+const SignInForm = (props) => {
 
-    const signUpSubmit = e => {
+    const signInSubmit = e => {
         e.preventDefault()
 
         const formData = {}
@@ -19,29 +19,27 @@ const SignUpForm = (props) => {
         }
 
         console.log(formData)
-        if (formData["password"] !== formData["password_confirmation"]) {
-            console.error('passwords do not match')
-            // TODO proper error message
-            return false
-        } 
-        axios.post(`${config.apiUrl}/sign-up`, {credentials: formData})
-            .then(data => console.log(data))
+
+        axios.post(`${config.apiUrl}/sign-in`, {credentials: formData})
+            .then(data => { 
+                console.log(data)
+                props.storeToken(data.data.user.token)
+            })
+            // .then(data => console.log('data.data.user.token is ', data.data.user.token))
             // TODO setter method get data to App.js
             .catch(err => console.error(err))
     }
 
 
     return (
-        <form className = "SignUpForm-form" onSubmit = {signUpSubmit}>
+        <form className = "SignInForm-form" onSubmit = {signInSubmit}>
             <label>Email:</label>
             <input type="text" name="email" />
             <label>Password:</label>
             <input type="password" name="password" />
-            <label>Confirm Password:</label>
-            <input type="password" name="password_confirmation" />
-            <button type="submit">Sign Up</button>
+            <button type="submit">Sign In</button>
         </form>
     )
 }
 
-export default SignUpForm
+export default SignInForm
