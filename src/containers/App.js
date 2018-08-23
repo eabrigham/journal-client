@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import SignUpForm from '../components/SignUpForm.js'
 import SignInForm from '../components/SignInForm.js'
+import ChangePasswordForm from '../components/ChangePasswordForm.js'
 import SignOutForm from '../components/SignOutForm.js'
 import PostForm from '../components/PostForm.js'
 import PostList from '../components/PostList';
@@ -61,9 +62,9 @@ class App extends Component {
         {/* <button type="submit" onSubmit={this.formSubmit}>Sign Up</button> */}
         <SignUpForm />
         <SignInForm setToken={this.setToken} setPosts={this.setPosts} />
+        <ChangePasswordForm token={this.state.token} />
         <SignOutForm token={this.state.token} setToken={this.setToken} setPosts={this.setPosts} />
         <PostForm token={this.state.token} addPost={this.addPost}/>
-        {/* <Post post={this.state.posts[0]} /> */}
         <PostList postList={this.state.posts} />
       </div>
     )
