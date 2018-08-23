@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import '../styles/App.css';
 import SignUpForm from '../components/SignUpForm.js'
 import SignInForm from '../components/SignInForm.js'
+import SignOutForm from '../components/SignOutForm.js'
 import PostForm from '../components/PostForm.js'
-import Post from '../components/Post.js'
 import PostList from '../components/PostList';
 
 class App extends Component {
@@ -44,6 +44,13 @@ class App extends Component {
   // use a ternary operator
   // have an array of the components that should be listed
 
+  // make a generic form submit button
+  // formSubmit = e => {
+  //   console.log('form submit ran')
+  //   e.preventDefault()
+  //   console.log(e.target)
+  // }
+
   render() {
     return (
       <div className="App">
@@ -51,8 +58,10 @@ class App extends Component {
           {/* make header its own class eventually */}
           <h1 className="App-title">Journal App</h1>
         </header>
+        {/* <button type="submit" onSubmit={this.formSubmit}>Sign Up</button> */}
         <SignUpForm />
         <SignInForm setToken={this.setToken} setPosts={this.setPosts} />
+        <SignOutForm token={this.state.token} setToken={this.setToken} setPosts={this.setPosts} />
         <PostForm token={this.state.token} addPost={this.addPost}/>
         {/* <Post post={this.state.posts[0]} /> */}
         <PostList postList={this.state.posts} />
