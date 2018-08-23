@@ -43,7 +43,7 @@ const SignUpForm = (props) => {
                 <input type="password" name="password" />
             </label>
             <label>
-                Confirm Password:
+                Confirm Password: 
                 <input type="password" name="password_confirmation" />
             </label>
             <button type="submit">Sign Up</button>

@@ -41,17 +41,6 @@ class App extends Component {
     })
   }
 
-  // to show just sign out/cp when signed in:
-  // use a ternary operator
-  // have an array of the components that should be listed
-
-  // make a generic form submit button
-  // formSubmit = e => {
-  //   console.log('form submit ran')
-  //   e.preventDefault()
-  //   console.log(e.target)
-  // }
-
   render() {
     return (
       <div className="App">
@@ -59,12 +48,17 @@ class App extends Component {
           {/* make header its own class eventually */}
           <h1 className="App-title">Journal App</h1>
         </header>
-        {/* <button type="submit" onSubmit={this.formSubmit}>Sign Up</button> */}
-        <SignUpForm />
-        <SignInForm setToken={this.setToken} setPosts={this.setPosts} />
-        <ChangePasswordForm token={this.state.token} />
-        <SignOutForm token={this.state.token} setToken={this.setToken} setPosts={this.setPosts} />
-        <PostForm token={this.state.token} addPost={this.addPost}/>
+        { ! this.state.token
+          ? <div>
+              <SignUpForm />
+              <SignInForm setToken={this.setToken} setPosts={this.setPosts} />
+            </div>
+          : <div>
+              <ChangePasswordForm token={this.state.token} />
+              <SignOutForm token={this.state.token} setToken={this.setToken} setPosts={this.setPosts} />
+              <PostForm token={this.state.token} addPost={this.addPost}/>
+            </div>
+        }      
         <PostList postList={this.state.posts} />
       </div>
     )

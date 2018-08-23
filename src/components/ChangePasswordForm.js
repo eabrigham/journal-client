@@ -53,7 +53,7 @@ const ChangePasswordForm = (props) => {
                 Confirm New Password:
                 <input type="password" name="new_confirmation" />
             </label>
-            <button type="submit">Sign Up</button>
+            <button type="submit">Change Password</button>
         </form>
     )
 }
