@@ -22,6 +22,7 @@ const SignUpForm = (props) => {
         console.log(formData)
         if (formData["password"] !== formData["password_confirmation"]) {
             console.error('passwords do not match')
+            props.feedbackMessage('Passwords do not match', SignUpForm)
             // TODO proper error message
             return false
         } 
@@ -47,6 +48,7 @@ const SignUpForm = (props) => {
                 <input type="password" name="password_confirmation" />
             </label>
             <button type="submit">Sign Up</button>
+            <p>{props.feedbackMsg}</p>
         </form>
     )
 }

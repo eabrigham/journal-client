@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../styles/App.css';
+import '../styles/index.css';
 import SignUpForm from '../components/SignUpForm.js'
 import SignInForm from '../components/SignInForm.js'
 import ChangePasswordForm from '../components/ChangePasswordForm.js'
@@ -12,11 +12,14 @@ class App extends Component {
     super (props) 
     this.state = {
       token: null,
-      posts: []
+      posts: [],
+      feedbackComponent: null,
+      feedbackMsg: null
     }
     this.setToken = this.setToken.bind(this)
     this.addPost = this.addPost.bind(this)
     this.setPosts = this.setPosts.bind(this)
+    this.feedbackMessage = this.feedbackMessage.bind(this)
   }
 
   setToken (token) {
@@ -41,6 +44,23 @@ class App extends Component {
     })
   }
 
+  // passing this thing down to forms that need to trigger messages
+  // binding this since it uses setState
+  feedbackMessage (message, componentName) {
+    this.setState({
+      feedbackComponent: componentName,
+      feedbackMsg: message
+    })
+    // write something to make it wait for 5 seconds
+    setTimeout(() => {
+      this.setState({
+        feedbackComponent: null,
+        feedbackMsg: null
+      }),
+      2500
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -50,7 +70,10 @@ class App extends Component {
         </header>
         { ! this.state.token
           ? <div>
-              <SignUpForm />
+              <SignUpForm feedbackMessage={this.feedbackMessage}
+                          feedbackMsg={this.state.feedbackComponent === 'SignUpForm' 
+                                         ? this.state.feedbackMsg
+                                         : null }/>
               <SignInForm setToken={this.setToken} setPosts={this.setPosts} />
             </div>
           : <div>
