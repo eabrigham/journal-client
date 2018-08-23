@@ -17,6 +17,7 @@ const SignInForm = (props) => {
             }
             formData[field.name] = field.value;
         }
+        e.target.reset()
 
         console.log(formData)
 
@@ -40,7 +41,11 @@ const SignInForm = (props) => {
                 return res
             })
             .then(res => props.setPosts(res.data.posts))
-            .catch(err => console.error(err))
+            .then(props.feedbackMessage('Signed in successfully', 'SignInForm'))
+            .catch(err => {
+                console.error(err)
+                props.feedbackMessage('Sign in failed. Check your username and password.', 'SignInForm')
+            })
     }
 
 
@@ -55,6 +60,7 @@ const SignInForm = (props) => {
                 <input type="password" name="password" />
             </label>
             <button type="submit">Sign In</button>
+            <p>{props.feedbackMsg}</p>
         </form>
     )
 }

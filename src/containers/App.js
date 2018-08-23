@@ -76,15 +76,31 @@ class App extends Component {
                           feedbackMsg={this.state.feedbackComponent === 'SignUpForm' 
                                          ? this.state.feedbackMsg
                                          : null }/>
-              <SignInForm setToken={this.setToken} setPosts={this.setPosts} />
+              <SignInForm setToken={this.setToken} setPosts={this.setPosts} 
+                          feedbackMessage={this.feedbackMessage}
+                          feedbackMsg={this.state.feedbackComponent === 'SignInForm' 
+                                         ? this.state.feedbackMsg
+                                         : null }/>
             </div>
           : <div>
-              <ChangePasswordForm token={this.state.token} />
-              <SignOutForm token={this.state.token} setToken={this.setToken} setPosts={this.setPosts} />
+              <ChangePasswordForm token={this.state.token}
+                                  feedbackMessage={this.feedbackMessage}
+                                  feedbackMsg={this.state.feedbackComponent === 'ChangePasswordForm' 
+                                                 ? this.state.feedbackMsg
+                                                 : null }/> 
+              <SignOutForm token={this.state.token} setToken={this.setToken} setPosts={this.setPosts} 
+                            feedbackMessage={this.feedbackMessage}
+                            feedbackMsg={this.state.feedbackComponent === 'SignOutForm' 
+                                           ? this.state.feedbackMsg
+                                           : null }/>
               <PostForm token={this.state.token} addPost={this.addPost}/>
             </div>
         }      
-        <PostList postList={this.state.posts} />
+        <PostList postList={this.state.posts}
+                  feedbackMessage={this.feedbackMessage}
+                  feedbackMsg={this.state.feedbackComponent === 'PostList' 
+                                 ? this.state.feedbackMsg
+                                 : null }/>
       </div>
     )
   }

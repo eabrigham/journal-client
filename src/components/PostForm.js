@@ -17,6 +17,7 @@ const PostForm = (props) => {
             }
             formData[field.name] = field.value;
         }
+        e.target.reset()
 
         console.log(formData)
 
@@ -36,7 +37,10 @@ const PostForm = (props) => {
               props.addPost(res.data.post)
 
             })
-          .catch(err => console.log(err))
+          .catch(err => {
+              console.log(err)
+              props.feedbackMessage('Create post failed', 'PostForm')
+            })
         };
 
     return (
@@ -50,6 +54,7 @@ const PostForm = (props) => {
                 <input type="text" name="content" />
             </label>
             <button type="submit">Create Post</button>
+            <p>{props.feedbackMsg}</p>
         </form>
     )
 }

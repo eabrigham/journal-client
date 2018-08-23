@@ -22,7 +22,7 @@ const ChangePasswordForm = (props) => {
         console.log(formData)
         if (formData["new"] !== formData["new_confirmation"]) {
             console.error('passwords do not match')
-            // TODO proper error message
+            props.feedbackMessage('Passwords do not match', 'ChangePasswordForm')
             return false
         } 
         axios({
@@ -34,8 +34,11 @@ const ChangePasswordForm = (props) => {
             data: {passwords: formData}
           })
             .then(data => console.log(data))
-            // TODO setter method get data to App.js
-            .catch(err => console.error(err))
+            .then(props.feedbackMessage('Changed password successfully', 'ChangePasswordForm'))
+            .catch(err => { 
+                console.error(err)
+                props.feedbackMessage('Change password failed', 'ChangePasswordForm')
+            })
     }
 
 
@@ -54,6 +57,7 @@ const ChangePasswordForm = (props) => {
                 <input type="password" name="new_confirmation" />
             </label>
             <button type="submit">Change Password</button>
+            <p>{props.feedbackMsg}</p>
         </form>
     )
 }

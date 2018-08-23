@@ -26,14 +26,19 @@ const SignOutForm = (props) => {
                 props.setToken(null)
                 props.setPosts([])
             })
+            .then(props.feedbackMessage('Signed out successfully', 'SignOutForm'))
             // TODO setter method get data to App.js
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.error(err)
+                props.feedbackMessage('Signed out failed', 'SignOutForm')
+            })
     }
 
 
     return (
         <form className = "SignOutForm-form" onSubmit = {signOutSubmit}>
             <button type="submit">Sign Out</button>
+            <p>{props.feedbackMsg}</p>
         </form>
     )
 }
