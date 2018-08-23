@@ -46,10 +46,14 @@ const SignInForm = (props) => {
 
     return (
         <form className = "SignInForm-form" onSubmit = {signInSubmit}>
-            <label>Email:</label>
-            <input type="text" name="email" />
-            <label>Password:</label>
-            <input type="password" name="password" />
+            <label>
+                Email:
+                <input type="text" name="email" />
+            </label>
+            <label>
+                Password:
+                <input type="password" name="password" />
+            </label>
             <button type="submit">Sign In</button>
         </form>
     )

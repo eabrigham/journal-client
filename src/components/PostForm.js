@@ -41,10 +41,14 @@ const PostForm = (props) => {
 
     return (
         <form className = "postForm-form" onSubmit = {postSubmit}>
-            <label>Title:</label>
-            <input type="text" name="title" />
-            <label>Write Post:</label>
-            <input type="text" name="content" />
+            <label>
+                Title:
+                <input type="text" name="title" />
+            </label>
+            <label>
+                Write Post:
+                <input type="text" name="content" />
+            </label>
             <button type="submit">Create Post</button>
         </form>
     )

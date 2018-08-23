@@ -1,0 +1,15 @@
+form {
+    width: 550 px;
+    height: 450 px;
+    padding: 15px;
+    border: 2px solid #002266;
+    color: #004466;
+}
+
+label {
+    display: block;
+}
+
+input {
+    border: 1px #004466;
+}
