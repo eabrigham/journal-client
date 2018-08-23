@@ -47,18 +47,20 @@ class App extends Component {
   // passing this thing down to forms that need to trigger messages
   // binding this since it uses setState
   feedbackMessage (message, componentName) {
+    console.log('feedbackMessage ran')
     this.setState({
       feedbackComponent: componentName,
       feedbackMsg: message
     })
     // write something to make it wait for 5 seconds
     setTimeout(() => {
-      this.setState({
-        feedbackComponent: null,
-        feedbackMsg: null
-      }),
-      2500
-    })
+        this.setState({
+          feedbackComponent: null,
+          feedbackMsg: null
+        })
+      },
+      5000
+    )
   }
 
   render() {
