@@ -1,4 +1,6 @@
-Journal App Api
+Journal App Client
+
+Check out the API [here](https://github.com/eabrigham/journal-api)
 
 A front end for a digital notebook/bullet journal where a user can write posts on a variety of topics.
 Implemented with Javascript and React
