@@ -11,7 +11,7 @@ const PostList = props => {
     const postList = props.postList
     for (let i = 0; i < postList.length; i++) {
         // how to append posts JSX objects? need to return them...
-        postJsxArray.push(<Post key={i} post={postList[i]} />)
+        postJsxArray.push(<Post key={i} post={postList[i]} token={props.token}/>)
     }
 
     return (

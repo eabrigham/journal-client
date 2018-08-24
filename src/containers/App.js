@@ -96,7 +96,7 @@ class App extends Component {
               <PostForm token={this.state.token} addPost={this.addPost}/>
             </div>
         }      
-        <PostList postList={this.state.posts}
+        <PostList postList={this.state.posts} token={this.state.token}
                   feedbackMessage={this.feedbackMessage}
                   feedbackMsg={this.state.feedbackComponent === 'PostList' 
                                  ? this.state.feedbackMsg
