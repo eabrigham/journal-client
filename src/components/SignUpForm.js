@@ -23,18 +23,15 @@ const SignUpForm = (props) => {
         // clear out the form after retreiving data
         e.target.reset()
 
-        console.log(formData)
         if (formData["password"] !== formData["password_confirmation"]) {
             props.feedbackMessage('Passwords do not match', 'SignUpForm')
             return false
         } 
         axios.post(`${config.apiUrl}/sign-up`, {credentials: formData})
             .then(data => {
-                console.log(data)
                 props.feedbackMessage('Signed up successfully', 'SignUpForm')
             })
             .catch(err => {
-                console.error(err)
                 props.feedbackMessage('Sign up was unable to run', 'SignUpForm')
             })
     }

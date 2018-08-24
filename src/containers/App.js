@@ -26,11 +26,9 @@ class App extends Component {
     this.setState(prevState => {
       return {token: token}
     })
-    console.log('In App.js and the state token is ', this.state.token)
   } 
 
   setPosts (postsArray) {
-    console.log(postsArray)
     this.setState(() => {
       return { posts: postsArray }
     })
@@ -47,7 +45,6 @@ class App extends Component {
   // passing this thing down to forms that need to trigger messages
   // binding this since it uses setState
   feedbackMessage (message, componentName) {
-    console.log('feedbackMessage ran')
     this.setState({
       feedbackComponent: componentName,
       feedbackMsg: message

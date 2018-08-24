@@ -19,11 +19,6 @@ const PostForm = (props) => {
         }
         e.target.reset()
 
-        console.log(formData)
-
-        const authHeader = {headers: {Authorization: `Token token=${props.token}`} }
-        console.log('In PostForm and the auth header is ', authHeader)
-
         axios({
             method: "post",
             url: `${config.apiUrl}/posts`,
@@ -33,12 +28,10 @@ const PostForm = (props) => {
             data: {post: formData}
           })
           .then(res => { 
-              console.log(res.data.post)
               props.addPost(res.data.post)
 
             })
           .catch(err => {
-              console.log(err)
               props.feedbackMessage('Create post failed', 'PostForm')
             })
         };

@@ -19,7 +19,6 @@ const SignOutForm = (props) => {
             }
           })
             .then(res => { 
-                console.log(res)
                 return res
             })
             .then(res => {
@@ -29,7 +28,6 @@ const SignOutForm = (props) => {
             .then(props.feedbackMessage('Signed out successfully', 'SignOutForm'))
             // TODO setter method get data to App.js
             .catch(err => {
-                console.error(err)
                 props.feedbackMessage('Signed out failed', 'SignOutForm')
             })
     }
