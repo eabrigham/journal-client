@@ -25,7 +25,7 @@ class Post extends Component {
                 <h3>{this.props.post.title}</h3>
                 <p>{this.props.post.content}</p>
                 <button onClick={(e) => this.setNeedsUpdate(true, e)}>Update</button>
-                {this.state.needsUpdate ? <UpdatePostForm post={this.props.post} token={this.props.token} /> : null}
+                {this.state.needsUpdate ? <UpdatePostForm post={this.props.post} token={this.props.token} updatePost={this.props.updatePost} /> : null}
             </div>
         )
     }

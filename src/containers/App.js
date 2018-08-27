@@ -20,6 +20,7 @@ class App extends Component {
     this.addPost = this.addPost.bind(this)
     this.setPosts = this.setPosts.bind(this)
     this.feedbackMessage = this.feedbackMessage.bind(this)
+    this.updatePost = this.updatePost.bind(this)
   }
 
   setToken (token) {
@@ -43,6 +44,15 @@ class App extends Component {
       return nextState
     })
   }
+
+  updatePost (postId, postObj) {
+    this.setState (prevState => {
+      let nextState = prevState
+      nextState.posts[postId] = postObj
+      return nextState
+    })
+  }
+
 
   // passing this thing down to forms that need to trigger messages
   // binding this since it uses setState
@@ -93,10 +103,11 @@ class App extends Component {
                             feedbackMsg={this.state.feedbackComponent === 'SignOutForm' 
                                            ? this.state.feedbackMsg
                                            : null }/>
-              <PostForm token={this.state.token} addPost={this.addPost}/>
+              <PostForm token={this.state.token} addPost={this.addPost} />
             </div>
         }      
         <PostList postList={this.state.posts} token={this.state.token}
+                  updatePost={this.updatePost}
                   feedbackMessage={this.feedbackMessage}
                   feedbackMsg={this.state.feedbackComponent === 'PostList' 
                                  ? this.state.feedbackMsg

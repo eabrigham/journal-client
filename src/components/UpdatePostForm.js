@@ -24,7 +24,7 @@ const UpdatePostForm = (props) => {
         console.log('In UpdatePostForm and formData is ', formData)
 
         axios({
-            method: "update",
+            method: "PATCH",
             url: `${config.apiUrl}/posts/${props.post.id}`,
             headers: {
               Authorization: `Token token=${props.token}`
@@ -34,8 +34,11 @@ const UpdatePostForm = (props) => {
           .then(res => { 
               console.log('updated successfully')
               console.log(res.data.post)
-            //   props.addPost(res.data.post)
+            // update post to App state
+                props.updatePost(props.post.id, res.data.post)
+            // user message
 
+            // remove update form box
             })
           .catch(err => {
               console.log(err)
@@ -53,7 +56,7 @@ const UpdatePostForm = (props) => {
                 Write Post:
                 <input type="text" name="content" defaultValue={props.post.content} />
             </label>
-            <button type="submit">Post</button>
+            <button type="submit">Submit Update</button>
             {/* user messaging for update might be a handful... */}
             {/* have to send props */}
             {/* <p>{props.feedbackMsg}</p> */}
