@@ -12,6 +12,7 @@ const UpdatePostForm = (props) => {
     const postSubmit = e => {
         e.preventDefault()
 
+        // get the data from the form fields and package it into an object
         const formData = {}
         for (let field of e.target.elements) {
             if (field.name === '') {
@@ -23,6 +24,7 @@ const UpdatePostForm = (props) => {
 
         console.log('In UpdatePostForm and formData is ', formData)
 
+        // send info to back end via patch
         axios({
             method: "PATCH",
             url: `${config.apiUrl}/posts/${props.post.id}`,

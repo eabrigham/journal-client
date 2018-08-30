@@ -105,7 +105,9 @@ class App extends Component {
                                            : null }/>
               <PostForm token={this.state.token} addPost={this.addPost} />
             </div>
-        }      
+        }
+        {/* pass to the postlist all the information needed to create a post
+        and to update a post  */}
         <PostList postList={this.state.posts} token={this.state.token}
                   updatePost={this.updatePost}
                   feedbackMessage={this.feedbackMessage}
