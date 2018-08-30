@@ -45,10 +45,10 @@ class App extends Component {
     })
   }
 
-  updatePost (postId, postObj) {
+  updatePost (postIndex, postObj) {
     this.setState (prevState => {
       let nextState = prevState
-      nextState.posts[postId] = postObj
+      nextState.posts[postIndex] = postObj
       return nextState
     })
   }
