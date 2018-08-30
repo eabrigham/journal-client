@@ -41,6 +41,7 @@ const UpdatePostForm = (props) => {
             // user message
 
             // remove update form box
+                props.setNeedsUpdate(false)
             })
           .catch(err => {
               console.log(err)

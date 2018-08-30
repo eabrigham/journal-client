@@ -11,7 +11,7 @@ class Post extends Component {
         this.state = {
             needsUpdate: false
         }
-        this.setNeedsUpdate.bind(this)
+        this.setNeedsUpdate = this.setNeedsUpdate.bind(this)
     }
 
     setNeedsUpdate (updateState) {
@@ -25,7 +25,7 @@ class Post extends Component {
                 <p>{this.props.post.content}</p>
                 {/* when update button form is clicked, set property of needing update to true */}
                 <button onClick={(e) => this.setNeedsUpdate(true, e)}>Update</button>
-                {this.state.needsUpdate ? <UpdatePostForm post={this.props.post} token={this.props.token} updatePost={this.props.updatePost} /> : null}
+                {this.state.needsUpdate ? <UpdatePostForm post={this.props.post} token={this.props.token} updatePost={this.props.updatePost} setNeedsUpdate={this.setNeedsUpdate} /> : null}
             </div>
         )
     }
