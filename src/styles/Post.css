@@ -1,0 +1,10 @@
+.post {
+    max-width: 500 px;
+    width: 500px;
+    margin: 10px auto;
+    padding: 5px 20px;
+    border: 2px solid #002266;
+    color: #004466;
+    background-color: #cceeff;
+    text-align: left;
+}
