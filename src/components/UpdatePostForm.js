@@ -36,8 +36,8 @@ const UpdatePostForm = (props) => {
           .then(res => { 
               console.log('updated successfully')
               console.log(res.data.post)
-            // update post to App state
-                props.updatePost(props.post.id, res.data.post)
+            // update post to App state using stored stateIndex position of posts array
+                props.updatePost(props.post.stateIndex, res.data.post)
             // user message
 
             // remove update form box
