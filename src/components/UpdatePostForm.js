@@ -39,12 +39,14 @@ const UpdatePostForm = (props) => {
             // update post to App state using stored stateIndex position of posts array
                 props.updatePost(props.post.stateIndex, res.data.post)
             // user message
+                props.setPostMessage('Successfully updated post')
 
             // remove update form box
                 props.setNeedsUpdate(false)
             })
           .catch(err => {
               console.log(err)
+              props.setPostMessage('Update post failed')
             //   props.feedbackMessage('Create post failed', 'PostForm')
             })
         };
