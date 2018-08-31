@@ -18,6 +18,7 @@ const ChangePasswordForm = (props) => {
             }
             formData[field.name] = field.value;
         }
+        e.target.reset()
 
         console.log(formData)
         if (formData["new"] !== formData["new_confirmation"]) {

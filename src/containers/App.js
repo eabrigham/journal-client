@@ -32,9 +32,7 @@ class App extends Component {
 
   setPosts (postsArray) {
     console.log(postsArray)
-    this.setState(() => {
-      return { posts: postsArray }
-    })
+    this.setState({ posts: postsArray })
   }
 
   addPost (postObj) {
@@ -62,14 +60,13 @@ class App extends Component {
       feedbackComponent: componentName,
       feedbackMsg: message
     })
-    // write something to make it wait for 5 seconds
     setTimeout(() => {
         this.setState({
           feedbackComponent: null,
           feedbackMsg: null
         })
       },
-      5000
+      1000
     )
   }
 
