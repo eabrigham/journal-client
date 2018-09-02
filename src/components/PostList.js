@@ -1,6 +1,5 @@
-// For every post in the app state,
-// create a post and display it.
-// The file I started playing.
+// For every post in the app state, create a post and display it.
+// The file I started playing instead of copying tutorials.
 
 import React from 'react'
 import Post from './Post.js'

@@ -2,8 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import config from '../config.js'
 
-// currently an uncontrolled form.
-// would need to make this a stateful component to control inputs.
+// see SignUpForm for more detailed comments of a similar component
 
 const SignInForm = (props) => {
 
@@ -28,7 +27,7 @@ const SignInForm = (props) => {
                 props.setToken(res.data.user.token)
                 return res.data.user.token
             })
-            // get all posts from back end and update store
+            // get all of the user's posts from back end
             .then ((token) => axios({
                 method: "get",
                 url: `${config.apiUrl}/posts`,
@@ -40,6 +39,7 @@ const SignInForm = (props) => {
                 console.log(res)
                 return res
             })
+            // update posts array in App.js state
             .then(res => props.setPosts(res.data.posts))
             .then(props.feedbackMessage('Signed in successfully', 'SignInForm'))
             .catch(err => {

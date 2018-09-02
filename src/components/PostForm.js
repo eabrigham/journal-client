@@ -2,8 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import config from '../config.js'
 
-// currently an uncontrolled form.
-// would need to make this a stateful component to control inputs.
+// see SignUpForm for more detailed comments of a similar component
 
 const PostForm = (props) => {
 
@@ -21,9 +20,6 @@ const PostForm = (props) => {
 
         console.log(formData)
 
-        const authHeader = {headers: {Authorization: `Token token=${props.token}`} }
-        console.log('In PostForm and the auth header is ', authHeader)
-
         axios({
             method: "post",
             url: `${config.apiUrl}/posts`,
@@ -33,9 +29,9 @@ const PostForm = (props) => {
             data: {post: formData}
           })
           .then(res => { 
+            // addPost pushes post onto post array in App state (using setState)
               console.log(res.data.post)
               props.addPost(res.data.post)
-
             })
           .catch(err => {
               console.log(err)

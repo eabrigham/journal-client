@@ -3,8 +3,7 @@ import axios from 'axios'
 import config from '../config.js'
 import '../styles/Form.css'
 
-// currently an uncontrolled form.
-// would need to make this a stateful component to control inputs.
+// see SignUpForm for more detailed comments of a similar component
 
 const SignOutForm = (props) => {
 
@@ -22,12 +21,13 @@ const SignOutForm = (props) => {
                 console.log(res)
                 return res
             })
+            // Reset the App.js state so the token is null and posts array is empty
+            // This will automatically redisplay the sign up/in and undisplay the posts
             .then(res => {
                 props.setToken(null)
                 props.setPosts([])
             })
             .then(props.feedbackMessage('Signed out successfully', 'SignOutForm'))
-            // TODO setter method get data to App.js
             .catch(err => {
                 console.error(err)
                 props.feedbackMessage('Signed out failed', 'SignOutForm')

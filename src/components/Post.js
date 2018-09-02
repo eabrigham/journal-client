@@ -56,9 +56,11 @@ class Post extends Component {
             <div className="post">
                 <h3>{this.props.post.title}</h3>
                 <p>{this.props.post.content}</p>
-                {/* when update button form is clicked, set property of needing update to true */}
+                {/* When update button form is clicked, set property of needing update to true */}
                 <button onClick = {(e) => this.setNeedsUpdate(true, e)}>Update</button>
                 <button onClick = {(e) => this.deletePost(this.props, e)}>Delete</button>
+                {/* If post needs update, UpdatePostForm is rendered and passed props
+                    including to allow user messaging on the post. */}
                 {this.state.needsUpdate 
                         ? <UpdatePostForm post={this.props.post} token={this.props.token} updatePost={this.props.updatePost} setNeedsUpdate={this.setNeedsUpdate} setPostMessage={this.setPostMessage} /> 
                         : null}

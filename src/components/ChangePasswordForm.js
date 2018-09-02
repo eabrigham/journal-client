@@ -3,8 +3,7 @@ import axios from 'axios'
 import config from '../config.js'
 import '../styles/Form.css'
 
-// currently an uncontrolled form.
-// would need to make this a stateful component to control inputs.
+// see SignUpForm for more detailed comments on a similar component
 
 const ChangePasswordForm = (props) => {
 

@@ -5,6 +5,7 @@ import '../styles/Form.css'
 
 // currently an uncontrolled form.
 // would need to make this a stateful component to control inputs.
+// (Meaning we are trusting the user to not put in stuff that would break or hack the app)
 
 const SignUpForm = (props) => {
 
@@ -28,9 +29,14 @@ const SignUpForm = (props) => {
             props.feedbackMessage('Passwords do not match', 'SignUpForm')
             return false
         } 
+        // posts axios request to either local or production url depending where
+        // app is currently hosted
         axios.post(`${config.apiUrl}/sign-up`, {credentials: formData})
             .then(data => {
                 console.log(data)
+                // If user signs up correctly, use feedbackMessage function sent down via props
+                // It will store that SignUpForm has a message which needs to be displayed
+                // Note that SignUpForm is stored as a string and not actually connected to the component
                 props.feedbackMessage('Signed up successfully', 'SignUpForm')
             })
             .catch(err => {
@@ -55,6 +61,11 @@ const SignUpForm = (props) => {
                 <input type="password" name="password_confirmation" />
             </label>
             <button type="submit">Sign Up</button>
+            
+            {/* Where user feedback displays
+                A message will only be passed down if feedbackMessage function
+                is run and indentifies SignOutForm as having a message. 
+                feedbackMessage takes care of the timer and resetting the message. */}
             <p>{props.feedbackMsg}</p>
         </form>
     )
