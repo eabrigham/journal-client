@@ -40,14 +40,12 @@ const UpdatePostForm = (props) => {
                 props.updatePost(props.post.stateIndex, res.data.post)
             // user message
                 props.setPostMessage('Successfully updated post')
-
             // remove update form box
                 props.setNeedsUpdate(false)
             })
           .catch(err => {
               console.log(err)
               props.setPostMessage('Update post failed')
-            //   props.feedbackMessage('Create post failed', 'PostForm')
             })
         };
 
@@ -62,9 +60,6 @@ const UpdatePostForm = (props) => {
                 <input type="text" name="content" defaultValue={props.post.content} />
             </label>
             <button type="submit">Submit Update</button>
-            {/* user messaging for update might be a handful... */}
-            {/* have to send props */}
-            {/* <p>{props.feedbackMsg}</p> */}
         </form>
     )
 }
