@@ -21,7 +21,6 @@ const ChangePasswordForm = (props) => {
 
         console.log(formData)
         if (formData["new"] !== formData["new_confirmation"]) {
-            console.error('passwords do not match')
             props.feedbackMessage('Passwords do not match', 'ChangePasswordForm')
             return false
         } 
@@ -33,10 +32,9 @@ const ChangePasswordForm = (props) => {
             },
             data: {passwords: formData}
           })
-            .then(data => console.log(data))
             .then(props.feedbackMessage('Changed password successfully', 'ChangePasswordForm'))
             .catch(err => { 
-                console.error(err)
+                // console.error(err)
                 props.feedbackMessage('Change password failed', 'ChangePasswordForm')
             })
     }

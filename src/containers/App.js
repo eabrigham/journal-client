@@ -35,11 +35,9 @@ class App extends Component {
     this.setState(prevState => {
       return {token: token}
     })
-    console.log('In App.js and the state token is ', this.state.token)
   } 
 
   setPosts (postsArray) {
-    console.log(postsArray)
     this.setState({ posts: postsArray })
   }
 
@@ -66,7 +64,6 @@ class App extends Component {
   // binding this since it uses setState
   // (future version, can the function automatically determine which component calls it?)
   feedbackMessage (message, componentName) {
-    console.log('feedbackMessage ran')
     this.setState({
       feedbackComponent: componentName,
       feedbackMsg: message

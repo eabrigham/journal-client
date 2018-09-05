@@ -18,12 +18,9 @@ const SignInForm = (props) => {
         }
         e.target.reset()
 
-        console.log(formData)
-
         axios.post(`${config.apiUrl}/sign-in`, {credentials: formData})
             // store token
             .then(res => { 
-                console.log(res)
                 props.setToken(res.data.user.token)
                 return res.data.user.token
             })
@@ -35,15 +32,11 @@ const SignInForm = (props) => {
                   Authorization: `Token token=${token}`
                 }
               }))
-            .then(res => {
-                console.log(res)
-                return res
-            })
             // update posts array in App.js state
             .then(res => props.setPosts(res.data.posts))
             .then(props.feedbackMessage('Signed in successfully', 'SignInForm'))
             .catch(err => {
-                console.error(err)
+                // console.error(err)
                 props.feedbackMessage('Sign in failed. Check your username and password.', 'SignInForm')
             })
     }

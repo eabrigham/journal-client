@@ -18,8 +18,6 @@ const PostForm = (props) => {
         }
         e.target.reset()
 
-        console.log(formData)
-
         axios({
             method: "post",
             url: `${config.apiUrl}/posts`,
@@ -30,11 +28,10 @@ const PostForm = (props) => {
           })
           .then(res => { 
             // addPost pushes post onto post array in App state (using setState)
-              console.log(res.data.post)
               props.addPost(res.data.post)
             })
           .catch(err => {
-              console.log(err)
+            //   console.log(err)
               props.feedbackMessage('Create post failed', 'PostForm')
             })
         };

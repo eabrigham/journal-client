@@ -33,14 +33,13 @@ const SignUpForm = (props) => {
         // app is currently hosted
         axios.post(`${config.apiUrl}/sign-up`, {credentials: formData})
             .then(data => {
-                console.log(data)
                 // If user signs up correctly, use feedbackMessage function sent down via props
                 // It will store that SignUpForm has a message which needs to be displayed
                 // Note that SignUpForm is stored as a string and not actually connected to the component
                 props.feedbackMessage('Signed up successfully', 'SignUpForm')
             })
             .catch(err => {
-                console.error(err)
+                // console.error(err)
                 props.feedbackMessage('Sign up was unable to run', 'SignUpForm')
             })
     }

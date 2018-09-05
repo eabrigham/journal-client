@@ -6,12 +6,11 @@ import config from '../config.js'
 // would need to make this a stateful component to control inputs.
 
 const UpdatePostForm = (props) => {
-    console.log('in UpdatePostForm and post is ', props.post)
-    console.log('in UpdatePostForm and the token is ', props.token)
+    // console.log('in UpdatePostForm and post is ', props.post)
+    // console.log('in UpdatePostForm and the token is ', props.token)
 
     const postSubmit = e => {
         e.preventDefault()
-
         // get the data from the form fields and package it into an object
         const formData = {}
         for (let field of e.target.elements) {
@@ -21,8 +20,7 @@ const UpdatePostForm = (props) => {
             formData[field.name] = field.value;
         }
         e.target.reset()
-
-        console.log('In UpdatePostForm and formData is ', formData)
+        // console.log('In UpdatePostForm and formData is ', formData)
 
         // send info to back end via patch
         axios({
@@ -34,8 +32,6 @@ const UpdatePostForm = (props) => {
             data: {post: formData}
           })
           .then(res => { 
-              console.log('updated successfully')
-              console.log(res.data.post)
             // update post to App state using stored stateIndex position of posts array
                 props.updatePost(props.post.stateIndex, res.data.post)
             // user message
@@ -44,7 +40,7 @@ const UpdatePostForm = (props) => {
                 props.setNeedsUpdate(false)
             })
           .catch(err => {
-              console.log(err)
+            //   console.log(err)
               props.setPostMessage('Update post failed')
             })
         };

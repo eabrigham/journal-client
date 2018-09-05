@@ -37,7 +37,6 @@ class Post extends Component {
         axios.delete(`${config.apiUrl}/posts/${currProps.post.id}`,
                         {headers: {Authorization: `Token token=${currProps.token}`}})
             .then(res => {
-                console.log('deleted and res is ', res)
                 setTimeout(() => {
                     this.props.updatePost(this.props.post.stateIndex, null)
                   },
@@ -46,7 +45,7 @@ class Post extends Component {
                 this.setPostMessage('Post successfully deleted')
             })
             .catch(err => {
-                console.log('delete failed and error is ', err)
+                // console.log('delete failed and error is ', err)
                 this.setPostMessage('Delete post failed')
             })
     }
