@@ -3,7 +3,7 @@
 let apiUrl 
 
 const apiUrls = {
-  production: '', // fill in production heroku url
+  production: 'https://nameless-thicket-47979.herokuapp.com',
   development: 'http://localhost:4741'
 }
 
