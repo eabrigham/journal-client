@@ -13,13 +13,22 @@ class App extends Component {
     this.state = {
       token: null,
       posts: [],
+      // determines which component needs a user message
+      // update and delete messages are stored separately in the Post component state
       feedbackComponent: null,
+      // stores the user message needed
       feedbackMsg: null
     }
+    // Binding 'this' to the App.js allows us to pass these functions down
+    // and thus alter App.js state from the child components.
+    // Allows information flow upward.
+    // Specific statement to bind functions can be avoided by using ES6 arrow functions.
+    // (Different default handling of 'this.')
     this.setToken = this.setToken.bind(this)
     this.addPost = this.addPost.bind(this)
     this.setPosts = this.setPosts.bind(this)
     this.feedbackMessage = this.feedbackMessage.bind(this)
+    this.updatePost = this.updatePost.bind(this)
   }
 
   setToken (token) {
@@ -29,9 +38,7 @@ class App extends Component {
   } 
 
   setPosts (postsArray) {
-    this.setState(() => {
-      return { posts: postsArray }
-    })
+    this.setState({ posts: postsArray })
   }
 
   addPost (postObj) {
@@ -42,21 +49,33 @@ class App extends Component {
     })
   }
 
-  // passing this thing down to forms that need to trigger messages
+  updatePost (postIndex, postObj) {
+    this.setState (prevState => {
+      let nextState = prevState
+      nextState.posts[postIndex] = postObj
+      return nextState
+    })
+  }
+
+
+  // pass feedbackMessage down to components which need a user message
+  // each component passes a string of its own name to the function via componentName
+  // to tell App state which component needs a message
   // binding this since it uses setState
+  // (future version, can the function automatically determine which component calls it?)
   feedbackMessage (message, componentName) {
     this.setState({
       feedbackComponent: componentName,
       feedbackMsg: message
     })
-    // write something to make it wait for 5 seconds
+    // sets message back to null after 1 second delay
     setTimeout(() => {
         this.setState({
           feedbackComponent: null,
           feedbackMsg: null
         })
       },
-      5000
+      1000
     )
   }
 
@@ -67,9 +86,11 @@ class App extends Component {
           {/* make header its own class eventually */}
           <h1 className="App-title">Journal App</h1>
         </header>
+        {/* if the user is not signed in, display sign up and sign in; else change password, sign out, and create post */}
         { ! this.state.token
           ? <div>
               <SignUpForm feedbackMessage={this.feedbackMessage}
+              // if the state says sign up component needs a message, pass down the message
                           feedbackMsg={this.state.feedbackComponent === 'SignUpForm' 
                                          ? this.state.feedbackMsg
                                          : null }/>
@@ -90,10 +111,13 @@ class App extends Component {
                             feedbackMsg={this.state.feedbackComponent === 'SignOutForm' 
                                            ? this.state.feedbackMsg
                                            : null }/>
-              <PostForm token={this.state.token} addPost={this.addPost}/>
+              <PostForm token={this.state.token} addPost={this.addPost} />
             </div>
-        }      
-        <PostList postList={this.state.posts}
+        }
+        {/* pass to the postlist all the information needed to create a post
+        and to update a post  */}
+        <PostList postList={this.state.posts} token={this.state.token}
+                  updatePost={this.updatePost}
                   feedbackMessage={this.feedbackMessage}
                   feedbackMsg={this.state.feedbackComponent === 'PostList' 
                                  ? this.state.feedbackMsg
