@@ -17,6 +17,7 @@ const SignOutForm = (props) => {
               Authorization: `Token token=${props.token}`
             }
           })
+
             // Reset the App.js state so the token is null and posts array is empty
             // This will automatically redisplay the sign up/in and undisplay the posts
             .then(res => {
@@ -25,7 +26,6 @@ const SignOutForm = (props) => {
             })
             .then(props.feedbackMessage('Signed out successfully', 'SignOutForm'))
             .catch(err => {
-                // console.error(err)
                 props.feedbackMessage('Signed out failed', 'SignOutForm')
             })
     }

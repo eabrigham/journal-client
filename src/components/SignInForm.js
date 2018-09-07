@@ -32,6 +32,7 @@ const SignInForm = (props) => {
                   Authorization: `Token token=${token}`
                 }
               }))
+      
             // update posts array in App.js state
             .then(res => props.setPosts(res.data.posts))
             .then(props.feedbackMessage('Signed in successfully', 'SignInForm'))

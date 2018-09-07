@@ -24,7 +24,6 @@ const SignUpForm = (props) => {
         // clear out the form after retreiving data
         e.target.reset()
 
-        console.log(formData)
         if (formData["password"] !== formData["password_confirmation"]) {
             props.feedbackMessage('Passwords do not match', 'SignUpForm')
             return false
