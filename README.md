@@ -4,13 +4,13 @@ A front end for a digital notebook/bullet journal where a user can write posts o
 
 This app was a chance to learn React, including some of the patterns around storing state and passing props down to child components. 
 
-(src/images/journal-app-image.png)
+![App screenshot](src/images/journal-app-image.png)
 
-Run this program locally using 'PORT=7165 npm start' in conjunction with the back-end repo.
+Install dependencies using npm install. Run this program locally using 'PORT=7165 npm start' in conjunction with the back-end repo.
 
 Planning & Documentation:
 
-[Description of how program is structured] (walkthrough.md)
+[Description of how program is structured](walkthrough.md)
 
 User Stories
 A user can…
@@ -22,4 +22,4 @@ A user can…
 * title a post
 
 In a future version, I plan to add labels which a user can tag their posts with, and then display only those posts with a particular label.
-[Wireframe](src/images/wireframe.jpeg)
+![Wireframe](src/images/wireframe.jpeg)
